@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    command: ["postgres", "-c", "shared_buffers=512MB", "-c", "max_connections=1000"]
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD","pg_isready", "-U", "myuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - server-network
+  server:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - server-network
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+      - SECRET_KEY=jksfd8hr389rqiohjnsda
+networks:
+  server-network:

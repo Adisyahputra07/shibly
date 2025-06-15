@@ -1,0 +1,24 @@
+FROM node:22.9.0-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy file-file ke dalam container
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Install dependencies TypeScript
+RUN npm install --save-dev typescript
+
+# Copy file-file lainnya ke dalam container
+COPY . .
+
+RUN node_modules/.bin/tsc
+RUN pwd
+# Expose port
+EXPOSE 8080
+
+# Jalankan aplikasi
+CMD ["sh", "-c", "node ./dist/migrate.js && node ./dist/index.js"]
