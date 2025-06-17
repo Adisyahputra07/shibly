@@ -18,7 +18,7 @@ COPY . .
 RUN node_modules/.bin/tsc
 RUN pwd
 # Expose port
-EXPOSE 8080
+EXPOSE 8000
 
 # Jalankan aplikasi
 CMD ["sh", "-c", "node ./dist/migrate.js && node ./dist/index.js"]
