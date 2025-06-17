@@ -211,9 +211,11 @@ export const addAdminHandler = async (req: Request, res: Response) => {
   } = req.body;
   try {
     const startTimeRegister = new Date().getTime();
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await database.insertInto('admin').values({
       username,
-      password,
+      password: hashedPassword,
       role,
       provinsi_id,
       kabupaten_kota_id,
