@@ -1,6 +1,6 @@
 // seed.ts
 
-import { database } from "../database/postgres";
+import { database } from "../database/postgresDatabase";
 
 async function seed() {
   // Provinsi

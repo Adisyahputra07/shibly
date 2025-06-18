@@ -30,7 +30,7 @@ interface Registration {
           "http://localhost:8080/get-anggota",
           {
             headers: {
-              authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOnsiaWQiOjEsInVzZXJuYW1lIjoiYWRtaW5wdXNhdCIsInJvbGUiOiJhZG1pbl9wdXNhdCIsInByb3ZpbnNpIjpudWxsLCJrYWJ1cGF0ZW5fa290YSI6bnVsbCwia2VjYW1hdGFuIjpudWxsLCJrZWx1cmFoYW4iOm51bGx9LCJpYXQiOjE3NDk5OTA3MTAsImV4cCI6MTc0OTk5NDMxMH0.iUfExQohwYBSz5J8fTk6qj8KD24FJFSIvMUaG49qgMA"
+              authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOnsiaWQiOjEsInVzZXJuYW1lIjoiYWRtaW5wdXNhdCIsInJvbGUiOiJhZG1pbl9wdXNhdCIsInByb3ZpbnNpIjpudWxsLCJrYWJ1cGF0ZW5fa290YSI6bnVsbCwia2VjYW1hdGFuIjpudWxsLCJrZWx1cmFoYW4iOm51bGx9LCJpYXQiOjE3NTAwODM3MjUsImV4cCI6MTc1MDA4NzMyNX0.yL20Je_iUrekWrQb-qpfCZDiRMhN0in2PlctFSwB5CM"
             },
           }
         )        

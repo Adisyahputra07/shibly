@@ -27,7 +27,7 @@ const loginSchema = Joi.object().keys({
   password: Joi.string().required().min(8).max(100)
 });
 
-const addAnggotaSchema = Joi.object().keys({
+const registerMemberSchema = Joi.object().keys({
   noKtp: Joi.string().required().min(16).max(50),
   name: Joi.string().required().min(3).max(50),
   noHp: Joi.string().required().min(8).max(100),
@@ -39,7 +39,6 @@ const addAnggotaSchema = Joi.object().keys({
 });
 
 const updateAdminSchema = Joi.object().keys({
-  id: Joi.number().required().integer(),
   password: Joi.string().min(8).max(100),
   noKtp: Joi.string().min(16).max(50),
   username: Joi.string().min(3).max(50),
@@ -85,8 +84,8 @@ export const validateLogin = (req: Request, res: Response, next: NextFunction) =
   next();
 };
 
-export const validateAddAnggotaSchema = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = addAnggotaSchema.validate(req.body);
+export const validateRegisterMemberSchema = (req: Request, res: Response, next: NextFunction) => {
+  const { error } = registerMemberSchema.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
