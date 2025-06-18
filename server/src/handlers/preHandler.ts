@@ -14,7 +14,6 @@ declare global {
   }
 }
 
-// ...existing code...
 function authPreHandler(req: Request, res: Response, next: NextFunction): void {
   const token = req.header('Authorization');
   try {
@@ -32,6 +31,20 @@ function authPreHandler(req: Request, res: Response, next: NextFunction): void {
       'id' in decoded.userToken &&
       'exp' in decoded
     ) {
+      // Check if the token has expired
+      if (decoded.exp && Date.now() >= decoded.exp * 1000) {
+        res.status(403).json({ error: 'Token has expired' });
+        Logger.error('Token has expired');
+        return;
+      }
+      // Check Role Admin
+      if (decoded.userToken.role !== 'admin_pusat' &&
+        (req.path === '/add-admin' || req.path === '/update-admin' || req.path === '/delete-admin')) { 
+        res.status(403).json({ error: 'Access Denied' });
+        Logger.error('Access Denied');
+        return;
+      }
+
       req.user = decoded.userToken as DataToken;
       next();
     } else {
