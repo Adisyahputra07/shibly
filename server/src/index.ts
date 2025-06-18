@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import adminRouter from './routes/adminRoutes';
-import userRouter from './routes/userRoutes';
+
+import adminRouter from './routers/adminRoutes';
+import authRouter from './routers/authRoutes';
+import authPreHandler from './handlers/preHandler';
 
 const PORT = process.env.PORT || 8000;
 const app = express()
@@ -12,8 +14,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/admin', adminRouter);
-app.use('/api/user', userRouter);
+app.use('/api/admin', authPreHandler, adminRouter);
+app.use('/api/auth', authRouter);
 
 
 app.listen(PORT, () => {

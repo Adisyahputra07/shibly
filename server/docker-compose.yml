@@ -30,5 +30,6 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=mydb
       - SECRET_KEY=jksfd8hr389rqiohjnsda
+      - PORT=8000
 networks:
   server-network:
